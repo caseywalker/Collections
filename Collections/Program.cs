@@ -29,7 +29,7 @@ namespace Collections
       //Remove at index
       e14Names.RemoveAt(1);
 
-      //Remove by expression
+      //Remove by expression. The fat arrow below is a predicate, returns a bool. 
       e14Names.RemoveAll(name => name.StartsWith("D"));
 
       //loop 
@@ -37,6 +37,10 @@ namespace Collections
       {
         Console.WriteLine($"{name} is in E14!");
       }
+
+      //List specific loop, .ForEach only available to List collection in C#. 
+      //Optimized way to loop through a list. Actions don't return, essentially a void.
+      e14Names.ForEach(name => Console.WriteLine($"{name} is a member of E14"));
     }
   }
 }
