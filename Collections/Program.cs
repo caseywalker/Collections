@@ -41,6 +41,50 @@ namespace Collections
       //List specific loop, .ForEach only available to List collection in C#. 
       //Optimized way to loop through a list. Actions don't return, essentially a void.
       e14Names.ForEach(name => Console.WriteLine($"{name} is a member of E14"));
+
+      //Dictionary<TKey, TValue> -- Open Generic, has not specified what type of thing it is yet. 
+      //like a physical dictionary, kinda. 
+      //Keys have to be unique. 
+
+      //Our dictionary is keyed by strings, and has string values 
+      var dictionary = new Dictionary<string, string>(); //Closed generic, types have been defined. 
+
+      dictionary.Add("Penultimate", "Second to last");
+      dictionary.Add("Jib", "Triangular sail at the foremast of a sailing vessel");
+      dictionary.Add("Arbitrary", "Someone who doesn't like Arby's");
+
+      //Index on the TKey. 
+      var definition = dictionary["Jib"];
+
+      //Won't work : dictionary requires each key to be unique. 
+      //dictionary.Add("Penultimate", "Things said too many times in the olympics");
+
+      //Method to assist you, try will prevent an exception/error. 
+      dictionary.TryAdd("Penultimate", "Things said too many times in the olympics");
+      if (!dictionary.TryAdd("Penultimate", "Things said too many times in the olympics"))
+      {
+        Console.WriteLine("Its alreaded in the dictionary, I couldn't add it.");
+      }
+
+      if (dictionary.ContainsKey("Penultimate"))
+      {
+        dictionary["Penultimate"] = "Things said too many times in the Olympics.";
+      }
+
+      var allTheWords = dictionary.Keys;
+      var allTheDefinitions = dictionary.Values;
+
+      //looping in a dictionary
+      foreach(var pair in dictionary)
+      {
+        Console.WriteLine($"{pair.Key} : {pair.Value}");
+      }
+
+      //destructure the key:value pair in a dictionary.
+      foreach (var (word, def) in dictionary)
+      {
+        Console.WriteLine($"{word} definitions is {def}");
+      }
     }
   }
 }
