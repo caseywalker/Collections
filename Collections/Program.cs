@@ -43,6 +43,8 @@ namespace Collections
       e14Names.ForEach(name => Console.WriteLine($"{name} is a member of E14"));
 
       //Dictionary<TKey, TValue> -- Open Generic, has not specified what type of thing it is yet. 
+      //Arity (`2) <- Number of generic type params a type has. Dictionary`2. 
+      //Good for infrequently updated but often read data. Slow for data entry, getting data is fast. 
       //like a physical dictionary, kinda. 
       //Keys have to be unique. 
 
@@ -84,6 +86,66 @@ namespace Collections
       foreach (var (word, def) in dictionary)
       {
         Console.WriteLine($"{word} definitions is {def}");
+      }
+
+      var complicatedDictionary = new Dictionary<string, List<string>>();
+      complicatedDictionary.Add("Soup", new List<string> { "A meal made from broth", "Found in the wild at Panera" });
+
+      foreach (var (word, definitions) in complicatedDictionary)
+      {
+        Console.WriteLine(word);
+        foreach (var def in definitions)
+        {
+          Console.WriteLine($"\t{def}");
+        }
+      }
+
+      //Hashset<T>
+      //Like a list, in that they store a value at an index. 
+      //Like a dictionary in that the value has to be unique. 
+      //Completely different in that it eliminates non-unique stuff without errors. 
+      //pretty slow at adding data, super fast at getting data out or more specifically comparing data. 
+      //Typical use case is comparing the difference in two lists, finding what is duplicated or not. 
+      // Uses hashcodes to figure out uniqueness. 
+
+      var uniqueNames = new HashSet<string>();
+      uniqueNames.Add("Jameka");
+      uniqueNames.Add("Jameka");
+      uniqueNames.Add("Dylan");
+      uniqueNames.Add("Jameka");
+      uniqueNames.Add("Dylan");
+      //Result will only have two values in HashSet, Jameka and Dylan. 
+
+      //Queue<T>
+      //FIFO First In First Out based collection
+      //things that have to be done in order. Such as reports that need to be done in order.
+      var queue = new Queue<int>();
+      queue.Enqueue(3);
+      queue.Enqueue(2);
+      queue.Enqueue(7);
+      queue.Enqueue(8);
+      queue.Enqueue(10);
+
+      //Queues aren't really iterable. Expectations is that you work through a loop until empty
+      while(queue.Count > 0)
+      {
+        Console.WriteLine($"dequering {queue.Dequeue()}");
+      }
+
+      //Stack<T> 
+      //Opposite of queue, you work from the top of the stack
+      //LIFO, Last In First Out
+
+      var stack = new Stack<int>();
+      stack.Push(2);
+      stack.Push(1);
+      stack.Push(8);
+      stack.Push(3);
+      stack.Push(7);
+
+      while(stack.Count > 0)
+      {
+        Console.WriteLine($"Popping {stack.Pop()}");
       }
     }
   }
